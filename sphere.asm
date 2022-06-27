@@ -18,8 +18,10 @@
 	cmp dx,bp
 	je short @skip
 	xor bx,bx
+;	push bx
 	mov ax,4F05h
 	int 10h
+;	pop bx	; Should be 0 after int
 	mov bp,dx
 @skip:	mov si,1023
 	fld ST(0)		;j	j
@@ -82,13 +84,10 @@
 	add cx,si
 	xor cx,di
 	rol cx,cl
-	mov ax,cx
+	mov al,cl
 
-@pix:	mov bx,di
-	shl bx,10
-	add bx,si
-	mov ah,al
-	shl bx,2
+@pix:	mov ah,al
+	sub bx,4
 	mov es:[bx],ax
 	mov es:[bx+2],al
 
