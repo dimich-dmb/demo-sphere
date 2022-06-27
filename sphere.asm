@@ -2,6 +2,7 @@
 .code
 .startup
 .386
+.387
 	mov bx,118h
 	mov ax,4F02h
 	int 10h
@@ -73,7 +74,8 @@
 	fsubp ST(1),ST(0)	;ca+ct	cact4	i	j2	j
 	fmul n01		;0.1()	cact4	i	j2	j
 	faddp ST(1),ST(0)	;q	i	j2	j
-	fmul n320		;320q	i	j2	j
+;	fmul n320		;320q	i	j2	j
+	fmul r		        ;300q	i	j2	j
 	fistp color		;i	j2	j
 
 	mov ax,color
@@ -111,7 +113,7 @@
 x		dw	512
 y		dw	384
 n01		dd	0.1
-n320		dd	320.0
+;n320		dd	320.0
 r		dd	300.0
 r2		dd	90000.0
 lc		dd	4000.0
