@@ -11,7 +11,7 @@
 
 	finit
 				;ST(0)	 ST(1)	 ST(2)	 ST(3)	 ST(4)	 ST(5)	 ST(6)	 ST(7)
-	mov di,768
+	mov di,767
 	fild y			;j
 @l1:	mov dx,di
 	shr dx,4
@@ -21,7 +21,7 @@
 	mov ax,4F05h
 	int 10h
 	mov bp,dx
-@skip:	mov si,1024
+@skip:	mov si,1023
 	fld ST(0)		;j	j
 	fld ST(0)		;j	j	j
 	fadd lc			;ly	j	j
@@ -95,12 +95,12 @@
 	fld1			;1	i	j2	j
 	fsubp ST(1),ST(0)	;i-1	j2	j
 	dec si
-	jnz @l2
+	jns @l2
 	fcompp			;j
 	fld1			;1	j
 	fsubp ST(1),ST(0)
 	dec di
-	jnz @l1
+	jns @l1
 	fcomp
 
 	mov ah,10h
