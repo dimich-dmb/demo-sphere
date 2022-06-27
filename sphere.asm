@@ -7,6 +7,7 @@
 	int 10h
 	push 0A000h
 	pop es
+	xor bp,bp		; current bank
 
 	finit
 				;ST(0)	 ST(1)	 ST(2)	 ST(3)	 ST(4)	 ST(5)	 ST(6)	 ST(7)
@@ -81,13 +82,13 @@
 
 @pix:	mov dx,di
 	shr dx,4
-	cmp dx,cur_bank
+	cmp dx,bp
 	je short @skip
 	push ax
 	xor bx,bx
 	mov ax,4F05h
 	int 10h
-	mov cur_bank,dx
+	mov bp,dx
 	pop ax
 @skip:	mov bx,di
 	and bx,0Fh
@@ -115,8 +116,7 @@
 	mov ax,3
 	int 10h
 	retn
-
-cur_bank	dw	0
+.data
 x		dw	512
 y		dw	384
 n01		dd	0.1
