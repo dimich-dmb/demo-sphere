@@ -85,7 +85,6 @@
 	mov ax,cx
 
 @pix:	mov bx,di
-	and bx,0Fh
 	shl bx,10
 	add bx,si
 	mov ah,al
