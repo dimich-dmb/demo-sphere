@@ -64,10 +64,10 @@
 	fmul n01		;0.1()	cact4	i	j2	j
 	faddp ST(1),ST(0)	;q	i	j2	j
 	fmul n320		;320q	i	j2	j
-	fadd n80		;80+...	i	j2	j
 	fistp color		;i	j2	j
 
 	mov ax,color
+	add al,80
 	jmp short @pix
 
 @no:	fcomp			;i	j2	j
@@ -116,7 +116,6 @@ x		dw	512
 y		dw	384
 n01		dd	0.1
 n320		dd	320.0
-n80		dd	80.0
 r		dd	300.0
 r2		dd	90000.0
 lc		dd	4000.0
