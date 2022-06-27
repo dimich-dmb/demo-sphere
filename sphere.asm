@@ -97,10 +97,10 @@
 	jns @l2
 	fcompp			;j
 	fld1			;1	j
-	fsubp ST(1),ST(0)
+	fsubp ST(1),ST(0)	;j-1
 	dec di
 	jns @l1
-	fcomp
+;	fcomp           ; no need to clear stack at exit
 
 	mov ah,10h
 	int 16h
