@@ -28,10 +28,8 @@
 	fadd ST(0),ST(2)	;Sum	i	j2	j
 	fsubr r2		;r2-Sum	i	j2	j
 	ftst
-	push ax
 	fstsw ax
 	sahf
-	pop ax
 	jc short @no
 	fsqrt			;k	i	j2	j
 	fld ST(0)		;k	k	i	j2	j
@@ -69,16 +67,14 @@
 	fadd n80		;80+...	i	j2	j
 	fistp color		;i	j2	j
 
-	push ax
 	mov ax,color
 	jmp short @pix
 
 @no:	fcomp			;i	j2	j
-	add ax,si
-	xor ax,di
 	add cx,si
-	rol ax,cl
-	push ax
+	xor cx,di
+	rol cx,cl
+	mov ax,cx
 
 @pix:	mov dx,di
 	shr dx,4
@@ -99,7 +95,6 @@
 	mov es:[bx],ax
 	mov es:[bx+2],al
 
-	pop ax
 	fld1			;1	i	j2	j
 	fsubp ST(1),ST(0)	;i-1	j2	j
 	dec si
