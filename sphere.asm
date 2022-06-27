@@ -7,7 +7,7 @@
 	int 10h
 	push 0A000h
 	pop es
-	xor bp,bp		; current bank
+;	xor bp,bp		; current bank. very unlikely bp==2Fh at startup
 
 	finit
 				;ST(0)	 ST(1)	 ST(2)	 ST(3)	 ST(4)	 ST(5)	 ST(6)	 ST(7)
@@ -21,7 +21,7 @@
 ;	push bx
 	mov ax,4F05h
 	int 10h
-;	pop bx	; Should be 0 after int
+;	pop bx	; should be 0 after int
 	mov bp,dx
 @skip:	mov si,1023
 	fld ST(0)		;j	j
