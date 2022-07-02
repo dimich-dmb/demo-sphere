@@ -22,7 +22,7 @@
 ;	push bx
 	mov ax,4F05h
 	int 10h
-;	pop bx	; should be 0 after int
+;	pop bx	; should be 0 after int
 	mov bp,dx
 @skip:	mov si,1023
 	fld ST(0)		;j	j
